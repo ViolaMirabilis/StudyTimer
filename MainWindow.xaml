@@ -16,7 +16,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Rectangle x:Name="Background" Fill="LightBlue" Grid.RowSpan="3" Grid.ColumnSpan="2"/>
+        <Rectangle x:Name="Background" Fill="LightGreen" Grid.RowSpan="3" Grid.ColumnSpan="2"/>
         <Rectangle x:Name="SidePanel" Width="50" Fill="MediumPurple"/>
 
         <StackPanel x:Name="SidePanelStack" Grid.RowSpan="3" Orientation="Vertical" Margin="2,15,2,15">

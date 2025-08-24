@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using StudyTimer.Model;
+using StudyTimer.ViewModel;
 
 namespace StudyTimer.View
 {
@@ -21,13 +22,11 @@ namespace StudyTimer.View
     /// </summary>
     public partial class StudyTimerView : Page
     {
-        public TimerHandler Timer { get; set; }
         public StudyTimerView()
         {
             InitializeComponent();
-            Timer = new TimerHandler();
-            DataContext = Timer;
-            Timer.Start();
+            StudyTimerViewModel vm = new StudyTimerViewModel();     // Creating an instance of the ViewModel and assigning a new DataContext for this View
+            DataContext = vm;
         }
     }
 }

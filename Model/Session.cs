@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StudyTimer.Model
 {
-    public class SessionModel
+    public class Session
     {
         public Guid SessionId { get; set; }
         public DateTime CreationTime { get; set; }   // e.g., session created on March 18 2025

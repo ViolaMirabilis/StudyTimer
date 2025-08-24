@@ -9,60 +9,52 @@ namespace StudyTimer.Model
 {
     public class TimerHandler : ViewModelBase
     {
-        private DispatcherTimer _timer;
-        private TimeSpan _remainingTime;
-        private bool _isPaused;
+        public TimeSpan RemainingTime { get; private set; }
+        public bool IsPaused { get; private set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
 
-        // displays curre
-        public string? CurrentTime
+        // Constructor for the handler
+        public TimerHandler(int hours, int minutes)
         {
-            get { return _remainingTime.ToString(@"hh\:mm\:ss"); }
+            RemainingTime = TimeSpan.FromMinutes(hours * 60 + minutes);     // e.g., 1h 30 minutes => 1* 60 + 30 = 90 minutes. Formatting is handled in the ViewModel
         }
 
-        public TimerHandler()
+        // Needs to be async to separate it from the UI 
+        public void Tick()
         {
-            _remainingTime = TimeSpan.FromMinutes(30);      // 30 minutes at the start
-            _timer = new DispatcherTimer();
-            _timer.Interval = TimeSpan.FromSeconds(1);
-            _timer.Tick += Timer_Tick;       // delegate, without ()
-        }
-
-        private void Timer_Tick(object sender, EventArgs e)     // tick needs to be in this format
-        {
-            if (!_isPaused && _remainingTime.TotalSeconds > 0)
+            // If not paused and the timer isn't at 00:00:00
+            if (!IsPaused && RemainingTime.TotalSeconds > 0)
             {
-                _remainingTime = _remainingTime.Add(TimeSpan.FromSeconds(-1));      // every second it subtracts one, so the timer goes down
-                OnPropertyChanged(nameof(CurrentTime));     
+                RemainingTime = RemainingTime.Add(TimeSpan.FromSeconds(-1));        // Adds "-1" (so substracts) 1 every second, so the timer decreases     
             }
         }
+        // useless?
         public void SetTime(int hours, int minutes)
         {
-            _remainingTime = new TimeSpan(hours, minutes, 0);        // minutes always 0
-            OnPropertyChanged(nameof(CurrentTime));
+            RemainingTime = new TimeSpan(hours, minutes, 0);        // Seconds always as zero, so the user can only modify hours/minutes
         }
 
-        public void Start()
+        public void Pause()
         {
-            _timer.Start();
-        }
-
-        public void Pasue()
-        {
-            _isPaused = true;
+            IsPaused = true;
         }
 
         public void Resume()
         {
-            _isPaused = false;
+            if (IsPaused)       // if true make it false and vice versa. A simple toggle button.
+            {
+                IsPaused = false;
+            }
+            else
+            {
+                IsPaused = true;
+            }
         }
 
         public void Stop()
         {
-            _timer.Stop();
-            _remainingTime = TimeSpan.Zero;
-            OnPropertyChanged(nameof(CurrentTime));
+            IsPaused = true;
+            RemainingTime = TimeSpan.Zero;
         }
     }
 }
