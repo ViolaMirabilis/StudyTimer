@@ -10,7 +10,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using StudyTimer.View;
 
-using StudyTimer.View;
 namespace StudyTimer
 {
     /// <summary>
@@ -18,9 +17,9 @@ namespace StudyTimer
     /// </summary>
     public partial class MainWindow : Window
     {
-        private StudyTimerView _studyTimerView;
-        private SessionsView _sessionsView;
-        private SettingsView _settingsView;
+        private readonly StudyTimerView _studyTimerView;
+        private readonly SessionsView _sessionsView;
+        private readonly SettingsView _settingsView;
         public MainWindow()
         {
             InitializeComponent();

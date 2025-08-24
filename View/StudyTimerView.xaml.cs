@@ -28,5 +28,20 @@ namespace StudyTimer.View
             StudyTimerViewModel vm = new StudyTimerViewModel();     // Creating an instance of the ViewModel and assigning a new DataContext for this View
             DataContext = vm;
         }
+
+        private void Play_Click(object sender, RoutedEventArgs e)
+        {
+            //
+        }
+
+        private void PauseResume_Click(object sender, RoutedEventArgs e)
+        {
+            //asd
+        }
+
+        private void Stop_Click(object sender, RoutedEventArgs e)
+        {
+            //asd
+        }
     }
 }
