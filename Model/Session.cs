@@ -8,10 +8,18 @@ namespace StudyTimer.Model
 {
     public class Session
     {
-        public Guid SessionId { get; set; }
+        public int SessionId { get; set; }
         public DateTime CreationTime { get; set; }   // e.g., session created on March 18 2025
-        public DateTime Duration { get; set; }       // in HH:MM:SS
         public string? Description { get; set; }     // e.g. "Studying maths"
+        public TimeSpan Duration { get; set; }       // in HH:MM:SS
+        
+        public Session(int sessionId, DateTime creationTime, string description, TimeSpan duration)
+        {
+            SessionId = sessionId;
+            CreationTime = creationTime;
+            Description = description;
+            Duration = duration;
+        }
         
     }
 }

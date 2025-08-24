@@ -1,6 +1,7 @@
 ﻿using StudyTimer.MVVM;
 using StudyTimer.Model;
 using System.Windows.Threading;
+using System.Windows;
 
 namespace StudyTimer.ViewModel
 {
@@ -13,6 +14,33 @@ namespace StudyTimer.ViewModel
         public RelayCommand PauseResumeCommand => new RelayCommand(execute => PauseResume(), canExecute => { return true; });
         public RelayCommand StopCommand => new RelayCommand(execute => Stop(), canExecute => { return true; });
 
+        private string _pasueResumeButtonContent = "Pause";
+        public string PasueResumeButtonContent
+        {
+            get { return _pasueResumeButtonContent; }
+            set
+            {
+                if (_pasueResumeButtonContent != value)
+                {
+                    _pasueResumeButtonContent = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private string _DescriptionContent = "";
+        public string DescriptionContent
+        {
+            get { return _DescriptionContent; }
+            set
+            {
+                if (_DescriptionContent != value)
+                {
+                    _DescriptionContent = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
         public string CurrentTime       // Returns formatted Timer Countdown UI. It is a public property, so it can be bound to the UI.
         {
             get
@@ -45,11 +73,22 @@ namespace StudyTimer.ViewModel
         public void PauseResume()
         {
             _handler.PauseResume();
+
+            if (_handler.IsPaused)
+            {
+                PasueResumeButtonContent = "Resume";
+            }
+            else
+            {
+                PasueResumeButtonContent = "Pause";
+            }
         }
         public void Stop()
         {
             _handler.Stop();
             OnPropertyChanged(nameof(CurrentTime));     // updates the UI to 00:00:00
+
+            
         }
     }
 }

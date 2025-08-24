@@ -3,9 +3,9 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:StudyTimer.View"
+      xmlns:local="clr-namespace:StudyTimer.Controls"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="750"
+      d:DesignHeight="600" d:DesignWidth="925"
       Title="SessionsView">
 
     <Grid>
@@ -19,9 +19,23 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Border Grid.Row="1" Grid.Column="1" Height="100" Width="350" Background="LightGray" CornerRadius="25" Opacity="0.50"/>
-        <TextBlock Text="SESSIONS" Grid.Row="1" Grid.Column="1" FontFamily="Bahnschrift SemiLight" FontWeight="Bold" FontSize="64"
-   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Border Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" Height="500" Width="450" Background="White" CornerRadius="25" Opacity="0.50"/>
+
+        <!-- contains sessions -->
+        <ItemsControl Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Height="475" Width="425" ItemsSource="{Binding Sessions}" HorizontalAlignment="Center">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <local:SessionControl Margin="0,5,0,5"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            
+        </ItemsControl>
 
     </Grid>
 </Page>

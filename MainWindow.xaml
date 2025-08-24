@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StudyTimer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="1000">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -17,12 +17,12 @@
         </Grid.ColumnDefinitions>
 
         <Rectangle x:Name="Background" Fill="LightGreen" Grid.RowSpan="3" Grid.ColumnSpan="2"/>
-        <Rectangle x:Name="SidePanel" Width="50" Fill="MediumPurple"/>
+        <Rectangle x:Name="SidePanel" Width="75" Fill="White" Opacity="0.50"/>
 
         <StackPanel x:Name="SidePanelStack" Grid.RowSpan="3" Orientation="Vertical" Margin="2,15,2,15">
-            <Button Content="Home" Height="45" Width="45" Margin="0,15,0,15" Click="NavigateToHome_Click"/>
-            <Button Content="Sessions" Height="45" Width="45" Margin="0,15,0,15" Click="NavigateToSessions_Click"/>
-            <Button Content="Settings" Height="45" Width="45" Margin="0,15,0,15" Click="NavigateToSettings_Click"/>
+            <Button Content="Home" Height="60" Width="60" Margin="0,10,0,10" Click="NavigateToHome_Click"/>
+            <Button Content="Sessions" Height="60" Width="60" Margin="0,10,0,10" Click="NavigateToSessions_Click"/>
+            <Button Content="Settings" Height="60" Width="60" Margin="0,10,0,10" Click="NavigateToSettings_Click"/>
         </StackPanel>
 
         <Frame x:Name="MainWindowDisplay" Grid.Column="1" NavigationUIVisibility="Hidden"/>

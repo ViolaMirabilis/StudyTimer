@@ -1,4 +1,5 @@
 ﻿using StudyTimer.ViewModel;
+using StudyTimer.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,18 +15,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace StudyTimer.View
+namespace StudyTimer.Controls
 {
     /// <summary>
-    /// Interaction logic for SessionsView.xaml
+    /// Interaction logic for SessionControl.xaml
     /// </summary>
-    public partial class SessionsView : Page
+    public partial class SessionControl : UserControl
     {
-        public SessionsView()
+        public SessionControl()
         {
             InitializeComponent();
-            SessionsViewModel vm = new SessionsViewModel();
-            DataContext = vm;
         }
     }
 }
