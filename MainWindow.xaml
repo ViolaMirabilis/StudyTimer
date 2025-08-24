@@ -16,7 +16,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Rectangle x:Name="Background" Fill="LightGreen" Grid.RowSpan="3" Grid.ColumnSpan="2"/>
+        <Image Source="C:\Users\zajac\Desktop\wallpaper.jpg" Grid.RowSpan="3" Grid.Column="2" Stretch="UniformToFill"/>
         <Rectangle x:Name="SidePanel" Width="75" Fill="White" Opacity="0.50"/>
 
         <StackPanel x:Name="SidePanelStack" Grid.RowSpan="3" Orientation="Vertical" Margin="2,15,2,15">

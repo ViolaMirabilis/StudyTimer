@@ -26,7 +26,7 @@ namespace StudyTimer.ViewModel
         private void AddSession()
         {
             int sessionsCount = _sessions.Count + 1;        // ID of the first session is 1 and the rest is just plus one
-            var session = new Session(sessionsCount, DateTime.Now, "xd", TimeSpan.FromMinutes(90));        // creates a new session
+            var session = new Session(sessionsCount, DateTime.Now, "maths sucks ass", TimeSpan.FromMinutes(90));        // creates a new session
             _sessions.Add(session);
         }
 

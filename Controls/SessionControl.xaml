@@ -14,7 +14,7 @@
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
 
-        <Border Grid.ColumnSpan="4" Height="50" Width="400" CornerRadius="10" Background="LightCyan" Opacity="0.25"/>
+        <Border Grid.ColumnSpan="4" Height="50" Width="400" CornerRadius="10" Background="White" Opacity="0.80"/>
         
         <TextBlock x:Name="tbID" Grid.Column="0" Text="{Binding SessionId}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Bahnschrift SemiLight" FontWeight="Bold" FontSize="16" Foreground="White"/>
         <TextBlock x:Name="tbDescription" Grid.Column="1" Text="{Binding Description}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Bahnschrift SemiLight" FontWeight="Bold" FontSize="16" Foreground="White"/>
