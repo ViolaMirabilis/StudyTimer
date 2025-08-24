@@ -1,15 +1,13 @@
-﻿using System;
+﻿using StudyTimer.MVVM;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Threading;
 
 namespace StudyTimer.Model
 {
-    public class TimerHandler : INotifyPropertyChanged
+    public class TimerHandler : ViewModelBase
     {
         private DispatcherTimer _timer;
         private TimeSpan _remainingTime;
@@ -65,15 +63,6 @@ namespace StudyTimer.Model
             _timer.Stop();
             _remainingTime = TimeSpan.Zero;
             OnPropertyChanged(nameof(CurrentTime));
-        }
-
-
-        protected void OnPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
         }
     }
 }
