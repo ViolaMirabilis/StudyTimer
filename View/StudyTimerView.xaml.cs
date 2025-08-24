@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using StudyTimer.Model;
+using StudyTimer.MVVM;
 using StudyTimer.ViewModel;
 
 namespace StudyTimer.View
@@ -27,21 +28,6 @@ namespace StudyTimer.View
             InitializeComponent();
             StudyTimerViewModel vm = new StudyTimerViewModel();     // Creating an instance of the ViewModel and assigning a new DataContext for this View
             DataContext = vm;
-        }
-
-        private void Play_Click(object sender, RoutedEventArgs e)
-        {
-            //
-        }
-
-        private void PauseResume_Click(object sender, RoutedEventArgs e)
-        {
-            //asd
-        }
-
-        private void Stop_Click(object sender, RoutedEventArgs e)
-        {
-            //asd
         }
     }
 }

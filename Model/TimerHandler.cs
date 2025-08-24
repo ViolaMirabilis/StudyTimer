@@ -34,12 +34,7 @@ namespace StudyTimer.Model
             RemainingTime = new TimeSpan(hours, minutes, 0);        // Seconds always as zero, so the user can only modify hours/minutes
         }
 
-        public void Pause()
-        {
-            IsPaused = true;
-        }
-
-        public void Resume()
+        public void PauseResume()
         {
             if (IsPaused)       // if true make it false and vice versa. A simple toggle button.
             {

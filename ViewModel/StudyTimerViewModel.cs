@@ -9,6 +9,10 @@ namespace StudyTimer.ViewModel
         private readonly DispatcherTimer _timer;
         private readonly TimerHandler _handler;     // TimerHandlerModel
 
+        public RelayCommand StartCommand => new RelayCommand(execute => Start(), canExecute => { return true; });       // "can execute" and beyond is optional. This will allow the user to run the command whenever
+        public RelayCommand PauseResumeCommand => new RelayCommand(execute => PauseResume(), canExecute => { return true; });
+        public RelayCommand StopCommand => new RelayCommand(execute => Stop(), canExecute => { return true; });
+
         public string CurrentTime       // Returns formatted Timer Countdown UI. It is a public property, so it can be bound to the UI.
         {
             get
@@ -25,22 +29,22 @@ namespace StudyTimer.ViewModel
             _timer = new DispatcherTimer();
             _timer.Interval = TimeSpan.FromSeconds(1);      // Updates the timer every second
             _timer.Tick += Timer_Tick;                  // It's a delegate, so no () next to the method needed
-            _timer.Start();
         }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
             _handler.Tick();        //  calls the Tick method from the Model (which subtracts 1 second from the timer, every tick)
-            OnPropertyChanged(nameof(CurrentTime));     // \nameof is needed, because it needs the NAME of the property, not the value.
+            OnPropertyChanged(nameof(CurrentTime));     // nameof is needed, because it needs the NAME of the property, not the value.
         }
 
-        public void Pause()
+        public void Start()
         {
-            _handler.Pause();
+            _timer.Start();
         }
-        public void Resume()
+
+        public void PauseResume()
         {
-            _handler.Resume();
+            _handler.PauseResume();
         }
         public void Stop()
         {
