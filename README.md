@@ -1,4 +1,4 @@
-A WIP study timer to track hours spent crying while learning maths. I assume it might come in handy for people in the same boat.
+A **WIP** study timer to track hours spent crying while learning maths. I assume it might come in handy for people in the same boat.
 
 **This is my first attempt at the MVVM pattern - there's lots of stuff to work on, but I want to keep it here to see my progress in the foreseeable future.**
 
