@@ -8,7 +8,12 @@ namespace StudyTimer.ViewModel
     public class SessionsViewModel : ViewModelBase
     {
         // list of all the sessions (eventually will be remade to .JSON, hopefully)
-        private readonly ObservableCollection<Session> _sessions;
+        private static readonly ObservableCollection<Session> _sessions = new ObservableCollection<Session>();
+        public static int SessionsCount
+        {
+            get { return _sessions.Count; }
+        }
+
         public ObservableCollection<Session> Sessions
         {
             get { return _sessions; }
@@ -17,18 +22,24 @@ namespace StudyTimer.ViewModel
 
         public SessionsViewModel()
         {
-            _sessions = new ObservableCollection<Session>();
-            AddSession();       // temporary filler
-            AddSession();
             AddSession();
         }
 
-        private void AddSession()
+        // for public access
+        public static void AddSession(Session session)
         {
-            int sessionsCount = _sessions.Count + 1;        // ID of the first session is 1 and the rest is just plus one
-            var session = new Session(sessionsCount, DateTime.Now, "maths sucks ass", TimeSpan.FromMinutes(90));        // creates a new session
             _sessions.Add(session);
         }
+
+        // for local testing
+        private void AddSession()
+        {
+            int sessionsCount = Sessions.Count + 1;        // ID of the first session is 1 and the rest is just plus one
+            var session = new Session(sessionsCount, DateTime.Now, "test session", TimeSpan.FromSeconds(20).ToString());        // creates a new session
+            Sessions.Add(session);
+        }
+
+
 
     }
 }

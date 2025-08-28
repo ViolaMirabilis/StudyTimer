@@ -10,8 +10,9 @@ namespace StudyTimer.Model
     public class TimerHandler : ViewModelBase
     {
         public TimeSpan RemainingTime { get; private set; }
-        public bool IsPaused { get; private set; }
-
+        public DateTime CreationTime { get; set; }      // Not private because it's assinged in the StudyTimerViewModel
+        public TimeSpan DurationTime { get; set; }      // How long the sesison lasted
+        public bool IsPaused { get; set; }
 
         // Constructor for the handler
         public TimerHandler(int hours, int minutes)
@@ -34,6 +35,16 @@ namespace StudyTimer.Model
             RemainingTime = new TimeSpan(hours, minutes, 0);        // Seconds always as zero, so the user can only modify hours/minutes
         }
 
+        public void SetCreationTime()
+        {
+            CreationTime = DateTime.Now;
+        }
+
+        public TimeSpan SetDurationTime()
+        {
+            return DateTime.Now - CreationTime;
+        }
+
         public void PauseResume()
         {
             if (IsPaused)       // if true make it false and vice versa. A simple toggle button.
@@ -50,6 +61,11 @@ namespace StudyTimer.Model
         {
             IsPaused = true;
             RemainingTime = TimeSpan.Zero;
+        }
+
+        public string FormatDuration()
+        {
+            return DurationTime.ToString(@"hh\:mm\:ss");
         }
     }
 }

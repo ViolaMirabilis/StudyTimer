@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using StudyTimer.Model;
 using StudyTimer.View;
 
 namespace StudyTimer
@@ -20,9 +21,11 @@ namespace StudyTimer
         private readonly StudyTimerView _studyTimerView;
         private readonly SessionsView _sessionsView;
         private readonly SettingsView _settingsView;
+
         public MainWindow()
         {
             InitializeComponent();
+
             // initialising all the pages once at the start of the program
             _studyTimerView = new StudyTimerView();
             _sessionsView = new SessionsView();

@@ -11,9 +11,9 @@ namespace StudyTimer.Model
         public int SessionId { get; set; }
         public DateTime CreationTime { get; set; }   // e.g., session created on March 18 2025
         public string? Description { get; set; }     // e.g. "Studying maths"
-        public TimeSpan Duration { get; set; }       // in HH:MM:SS
+        public string Duration { get; set; }       // in HH:MM:SS
         
-        public Session(int sessionId, DateTime creationTime, string description, TimeSpan duration)
+        public Session(int sessionId, DateTime creationTime, string description, string duration)
         {
             SessionId = sessionId;
             CreationTime = creationTime;
