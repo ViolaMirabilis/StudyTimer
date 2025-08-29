@@ -47,9 +47,9 @@ namespace StudyTimer.Model
             CreationTime = DateTime.Now;
         }
 
-        public TimeSpan SetDurationTime()
+        public void SetDurationTime()
         {
-            return DateTime.Now - CreationTime;
+            DurationTime = DateTime.Now - CreationTime;
         }
 
         public void Start()

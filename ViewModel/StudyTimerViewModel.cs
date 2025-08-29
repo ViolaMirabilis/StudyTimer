@@ -71,13 +71,8 @@ namespace StudyTimer.ViewModel
             PlayNotificationSound();    // temporary ofc
             TimerHandler.SetCreationTime();
             TimerHandler.Start();
+            
         }
-
-        /*private void Timer_Tick(object sender, EventArgs e)
-        {
-            _timerHandler.Tick();        //  calls the Tick method from the Model (which subtracts 1 second from the timer, every tick)
-            OnPropertyChanged(nameof(CurrentTime));     // nameof is needed, because it needs the NAME of the property, not the value.
-        }*/
 
         public void PauseResume()
         {
@@ -89,8 +84,10 @@ namespace StudyTimer.ViewModel
 
             TimerHandler.Stop();
             OnPropertyChanged(nameof(CurrentTime));
+            TimerHandler.SetDurationTime();
+
             _session = new Session(SessionsViewModel.SessionsCount+1, TimerHandler.CreationTime, DescriptionContent, TimerHandler.DurationTimeFormatted());     // need to get rid of the static counter
-            //MessageBox.Show($"NEW STUDY SESSION\nID: {_session.SessionId}\nCreation time: {_session.CreationTime}\nDescription: {_session.Description}");
+            MessageBox.Show($"NEW STUDY SESSION\nID: {_session.SessionId}\nCreation time: {_session.CreationTime}\nDescription: {_session.Description}");
             SessionsViewModel.AddSession(_session);     // Static is a bad choice, not OOP/MVVM friendly, but idk how to do it for now.
         }
 

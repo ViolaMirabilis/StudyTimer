@@ -3,6 +3,5 @@
     public interface ISoundManager
     {
         public void PlaySound();
-
     }
 }
