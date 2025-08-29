@@ -23,11 +23,16 @@ namespace StudyTimer.View
     /// </summary>
     public partial class StudyTimerView : Page
     {
-        public StudyTimerView()
+        private StudyTimerViewModel Model;
+        public StudyTimerView(StudyTimerViewModel model)
         {
             InitializeComponent();
-            StudyTimerViewModel vm = new StudyTimerViewModel();     // Creating an instance of the ViewModel and assigning a new DataContext for this View
-            DataContext = vm;
+            Model = model;
+            
+            
+            //StudyTimerViewModel vm = new StudyTimerViewModel();     // Creating an instance of the ViewModel and assigning a new DataContext for this View
+            DataContext = Model;
+            //this.vm = vm;
         }
     }
 }

@@ -10,6 +10,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using StudyTimer.Model;
 using StudyTimer.View;
+using StudyTimer.ViewModel;
 
 namespace StudyTimer
 {
@@ -20,14 +21,16 @@ namespace StudyTimer
     {
         private readonly StudyTimerView _studyTimerView;
         private readonly SessionsView _sessionsView;
-        private readonly SettingsView _settingsView;
+        private readonly SettingsView _settingsView;    
 
         public MainWindow()
         {
             InitializeComponent();
 
+            SoundManager soundManager = new SoundManager();
+            StudyTimerViewModel studyTimerViewModel = new StudyTimerViewModel(soundManager);
             // initialising all the pages once at the start of the program
-            _studyTimerView = new StudyTimerView();
+            _studyTimerView = new StudyTimerView(studyTimerViewModel);
             _sessionsView = new SessionsView();
             _settingsView = new SettingsView();
 

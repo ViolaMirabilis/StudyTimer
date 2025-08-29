@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Reflection.Metadata;
 using System.Windows.Threading;
 
 namespace StudyTimer.Model
@@ -10,17 +11,21 @@ namespace StudyTimer.Model
     public class TimerHandler : ViewModelBase
     {
         public TimeSpan RemainingTime { get; private set; }
-        public DateTime CreationTime { get; set; }      // Not private because it's assinged in the StudyTimerViewModel
-        public TimeSpan DurationTime { get; set; }      // How long the sesison lasted
-        public bool IsPaused { get; set; }
+        public DateTime CreationTime { get; private set; }      // Not private because it's assinged in the StudyTimerViewModel
+        public TimeSpan DurationTime { get; private set; }      // How long the sesison lasted
+        public  DispatcherTimer Timer { get; set; }
+        public int Hours { get; private set; } = 0;
+        public int Minutes { get; private set; } = 30;      // 30 minutes is the default value of the timer
+        public bool IsPaused { get; set; } = false;
 
         // Constructor for the handler
-        public TimerHandler(int hours, int minutes)
+        public TimerHandler()
         {
-            RemainingTime = TimeSpan.FromMinutes(hours * 60 + minutes);     // e.g., 1h 30 minutes => 1* 60 + 30 = 90 minutes. Formatting is handled in the ViewModel
+            RemainingTime = TimeSpan.FromMinutes(Hours * 60 + Minutes);     // e.g., 1h 30 minutes => 1* 60 + 30 = 90 minutes. Formatting is handled in the ViewModel
+            Timer = new DispatcherTimer();
+            Timer.Interval = TimeSpan.FromSeconds(1);      // Updates the timer every second
         }
 
-        // Needs to be async to separate it from the UI 
         public void Tick()
         {
             // If not paused and the timer isn't at 00:00:00
@@ -29,10 +34,12 @@ namespace StudyTimer.Model
                 RemainingTime = RemainingTime.Add(TimeSpan.FromSeconds(-1));        // Adds "-1" (so substracts) 1 every second, so the timer decreases     
             }
         }
-        // useless?
+
         public void SetTime(int hours, int minutes)
         {
-            RemainingTime = new TimeSpan(hours, minutes, 0);        // Seconds always as zero, so the user can only modify hours/minutes
+            Hours = hours;
+            Minutes = minutes;
+            RemainingTime = new TimeSpan(Hours, Minutes, 0);        // Seconds always as zero, so the user can only modify hours/minutes
         }
 
         public void SetCreationTime()
@@ -45,27 +52,31 @@ namespace StudyTimer.Model
             return DateTime.Now - CreationTime;
         }
 
+        public void Start()
+        {
+            Timer.Start();
+        }
+
         public void PauseResume()
         {
-            if (IsPaused)       // if true make it false and vice versa. A simple toggle button.
-            {
-                IsPaused = false;
-            }
-            else
-            {
-                IsPaused = true;
-            }
+            IsPaused = !IsPaused;       // a quick toggle
         }
 
         public void Stop()
         {
             IsPaused = true;
             RemainingTime = TimeSpan.Zero;
+            Timer.Stop();
         }
 
-        public string FormatDuration()
+        public string DurationTimeFormatted()
         {
             return DurationTime.ToString(@"hh\:mm\:ss");
+        }
+
+        public string FormattedRemainingTime()
+        {
+            return RemainingTime.ToString(@"hh\:mm\:ss");
         }
     }
 }

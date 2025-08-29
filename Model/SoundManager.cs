@@ -6,13 +6,13 @@ namespace StudyTimer.Model
     public class SoundManager : ISoundManager
     {
         private const string _notificationsPath = @"C:\Users\zajac\Desktop\C# Projects\StudyTimer\Sounds\Notifications\SessionFinishedBell.wav";
-        private readonly SoundPlayer _player;
+        public SoundPlayer Player { get; }
         private bool _isPlaying = false;
 
         public SoundManager()
         {
-            _player = new SoundPlayer(_notificationsPath);
-            _player.Load();     // Loads the notification sound
+            Player = new SoundPlayer(_notificationsPath);
+            Player.Load();     // Loads the notification sound
         }
 
         public void PlaySound()
@@ -24,7 +24,7 @@ namespace StudyTimer.Model
         private async Task PlaySoundAsync()
         {
             _isPlaying = true;
-            _player.Play();
+            Player.Play();
             _isPlaying = false;     // Once the sound is done playing
         }
     }
