@@ -2,6 +2,7 @@
 {
     public interface ISoundManager
     {
-        public void PlaySound();
+        public void PlayMusic();
+        public void PlayNotification();
     }
 }

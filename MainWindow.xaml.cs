@@ -19,6 +19,7 @@ namespace StudyTimer
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly SessionManager _sessionManager;
         private readonly StudyTimerView _studyTimerView;
         private readonly SessionsView _sessionsView;
         private readonly SettingsView _settingsView;    
@@ -26,12 +27,13 @@ namespace StudyTimer
         public MainWindow()
         {
             InitializeComponent();
-
+            _sessionManager = new SessionManager();
             SoundManager soundManager = new SoundManager();
-            StudyTimerViewModel studyTimerViewModel = new StudyTimerViewModel(soundManager);
+            StudyTimerViewModel studyTimerViewModel = new StudyTimerViewModel(soundManager, _sessionManager);
             // initialising all the pages once at the start of the program
-            _studyTimerView = new StudyTimerView(studyTimerViewModel);
-            _sessionsView = new SessionsView();
+            
+            _studyTimerView = new StudyTimerView(studyTimerViewModel, _sessionManager);
+            _sessionsView = new SessionsView(_sessionManager);
             _settingsView = new SettingsView();
 
             MainWindowDisplay.Navigate(_studyTimerView);      // The program starts with the StudyTimerView 

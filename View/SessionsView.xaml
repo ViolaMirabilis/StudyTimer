@@ -9,6 +9,7 @@
       Title="SessionsView">
 
     <Grid>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
             <RowDefinition Height="8*"/>
@@ -17,6 +18,8 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+
+        <Border Grid.Row="0" Grid.RowSpan="2" Height="500" Width="450" Background="White" CornerRadius="25" Opacity="0.50"/>
 
         <Grid Grid.Row="0" Width="400" Margin="0,0,0,20">
             <Grid.ColumnDefinitions>
@@ -31,15 +34,10 @@
             <TextBlock Grid.Column="2" Text="Created" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Bahnschrift SemiLight" FontWeight="Bold" FontSize="16" Foreground="Black"/>
             <TextBlock Grid.Column="3" Text="Duration" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Bahnschrift SemiLight" FontWeight="Bold" FontSize="16" Foreground="Black"/>
 
-
         </Grid>
 
-        <Border Grid.Row="0" Grid.RowSpan="2" Height="500" Width="450" Background="White" CornerRadius="25" Opacity="0.50">
-            
-        </Border>
-
         <!-- contains sessions -->
-        <ItemsControl Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Height="400" Width="425" ItemsSource="{Binding Sessions}" HorizontalAlignment="Center">
+        <ItemsControl Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Height="400" Width="425" ItemsSource="{Binding ListOfSessions}" HorizontalAlignment="Center">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"/>

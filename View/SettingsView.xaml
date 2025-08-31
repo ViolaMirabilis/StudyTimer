@@ -10,18 +10,52 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Border Grid.Row="1" Grid.Column="1" Height="100" Width="350" Background="LightGray" CornerRadius="25" Opacity="0.50"/>
-        <TextBlock Text="SETTINGS" Grid.Row="1" Grid.Column="1" FontFamily="Bahnschrift SemiLight" FontWeight="Bold" FontSize="64"
-       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Height="200" Width="350" Background="LightGray" CornerRadius="25" Opacity="0.50"/>
+
+            <TextBlock Text="Timer settings" Grid.Column="1" Grid.ColumnSpan="2" FontFamily="Bahnschrift SemiBold" FontWeight="Bold" FontSize="32"
+                        HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,60,0,0"/>
+
+            <TextBlock Text="Hours" Grid.Row="1" Grid.Column="1" FontFamily="Bahnschrift SemiBold" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="50,100,0,15"/>
+            <TextBlock Text="Minutes" Grid.Row="1" Grid.Column="2" FontFamily="Bahnschrift SemiBold" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,100,50,15"/>
+
+
+            <Border Grid.Row="1" Grid.Column="1" Width="70" Height="50" CornerRadius="10" Background="White" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="50,0,0,0" Opacity="0.75"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Width="60" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="50,0,0,0"
+                    Background="Transparent" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                    FontFamily="Bahnschrift SemiBold" BorderThickness="0"
+                    PreviewTextInput="NumberValidationTextBox"/>
+
+            <Border Grid.Row="1" Grid.Column="2" Width="70" Height="50" CornerRadius="10" Background="White" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,50,0" Opacity="0.75"/>
+            <TextBox Grid.Row="1" Grid.Column="2" Width="60" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0, 0,50,0"
+                    Background="Transparent" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                    FontFamily="Bahnschrift SemiBold" BorderThickness="0"
+                    PreviewTextInput="NumberValidationTextBox"/>
+
+            <Button Content="Submit" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Width="70" Height="50" Background="White" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,65" Opacity="0.75"
+                    FontFamily="Bahnschrift SemiBold" FontSize="20"/>
+
+
+        </Grid>
+
+
+
 
     </Grid>
 </Page>

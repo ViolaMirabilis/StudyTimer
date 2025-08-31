@@ -15,10 +15,15 @@ namespace StudyTimer.Model
             Player.Load();     // Loads the notification sound
         }
 
-        public void PlaySound()
+        public void PlayMusic()
         {
             if (_isPlaying) return;     // Doesn't play if true
             _ = PlaySoundAsync();       // Plays the sound but doesn't await, so it doesn't block the UI
+        }
+        public void PlayNotification()
+        {
+            if (_isPlaying) return;
+            _ = PlaySoundAsync();
         }
 
         private async Task PlaySoundAsync()

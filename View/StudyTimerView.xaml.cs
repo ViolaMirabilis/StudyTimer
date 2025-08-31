@@ -24,9 +24,11 @@ namespace StudyTimer.View
     public partial class StudyTimerView : Page
     {
         private StudyTimerViewModel Model;
-        public StudyTimerView(StudyTimerViewModel model)
+        private SessionManager SessionManager;
+        public StudyTimerView(StudyTimerViewModel model, SessionManager sessionManager)
         {
             InitializeComponent();
+            SessionManager = sessionManager;
             Model = model;
             
             

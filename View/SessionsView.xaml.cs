@@ -1,4 +1,5 @@
-﻿using StudyTimer.ViewModel;
+﻿using StudyTimer.Model;
+using StudyTimer.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,10 +22,12 @@ namespace StudyTimer.View
     /// </summary>
     public partial class SessionsView : Page
     {
-        public SessionsView()
+        private readonly SessionManager _sessionManager;
+        public SessionsView(SessionManager sessionManager)
         {
             InitializeComponent();
-            SessionsViewModel vm = new SessionsViewModel();
+            _sessionManager = sessionManager;
+            SessionsViewModel vm = new SessionsViewModel(sessionManager);
             DataContext = vm;
         }
     }

@@ -7,36 +7,41 @@ namespace StudyTimer.ViewModel
 {
     public class SessionsViewModel : ViewModelBase
     {
-        // list of all the sessions (eventually will be remade to .JSON, hopefully)
-        private static readonly ObservableCollection<Session> _sessions = new ObservableCollection<Session>();
-        public static int SessionsCount
+
+        private readonly SessionManager _sessionManager;
+        public ObservableCollection<Session> ListOfSessions     // uses the manager to keep track of sessions
         {
-            get { return _sessions.Count; }
+            get {  return _sessionManager.Sessions; }
+            set
+            {
+                ListOfSessions = _sessionManager.Sessions;
+            }
         }
 
-        public ObservableCollection<Session> Sessions
+        public SessionsViewModel(SessionManager sessionManager)
         {
-            get { return _sessions; }
+            _sessionManager = sessionManager;
+            AddPreloadedSession();
+            AddPreloadedSession();
+            AddPreloadedSession();
         }
-
-
-        public SessionsViewModel()
+        /*public static int SessionsCount
         {
-            AddSession();
-        }
+            get { return Sessions.Count; }
+        }*/
 
         // for public access
-        public static void AddSession(Session session)
+        public void AddSession(Session session)
         {
-            _sessions.Add(session);
+            ListOfSessions.Add(session);
         }
 
         // for local testing
-        private void AddSession()
+        private void AddPreloadedSession()
         {
-            int sessionsCount = Sessions.Count + 1;        // ID of the first session is 1 and the rest is just plus one
+            int sessionsCount = ListOfSessions.Count + 1;        // ID of the first session is 1 and the rest is just plus one
             var session = new Session(sessionsCount, DateTime.Now, "test session", TimeSpan.FromSeconds(20).ToString());        // creates a new session
-            Sessions.Add(session);
+            ListOfSessions.Add(session);
         }
 
 
