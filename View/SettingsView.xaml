@@ -10,9 +10,9 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="8*"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="250"/>
+            <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -30,25 +30,27 @@
             <Border Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Height="200" Width="350" Background="LightGray" CornerRadius="25" Opacity="0.50"/>
 
             <TextBlock Text="Timer settings" Grid.Column="1" Grid.ColumnSpan="2" FontFamily="Bahnschrift SemiBold" FontWeight="Bold" FontSize="32"
-                        HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,60,0,0"/>
+                        HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,25,0,0"/>
 
-            <TextBlock Text="Hours" Grid.Row="1" Grid.Column="1" FontFamily="Bahnschrift SemiBold" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="50,100,0,15"/>
-            <TextBlock Text="Minutes" Grid.Row="1" Grid.Column="2" FontFamily="Bahnschrift SemiBold" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,100,50,15"/>
+            <TextBlock Text="Hours" Grid.Row="1" Grid.Column="1" FontFamily="Bahnschrift SemiBold" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="50,0,0,75"/>
+            <TextBlock Text="Minutes" Grid.Row="1" Grid.Column="2" FontFamily="Bahnschrift SemiBold" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,50,75"/>
 
 
             <Border Grid.Row="1" Grid.Column="1" Width="70" Height="50" CornerRadius="10" Background="White" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="50,0,0,0" Opacity="0.75"/>
             <TextBox Grid.Row="1" Grid.Column="1" Width="60" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="50,0,0,0"
+                    Text="{Binding Hours}"
                     Background="Transparent" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                     FontFamily="Bahnschrift SemiBold" BorderThickness="0"
                     PreviewTextInput="NumberValidationTextBox"/>
 
             <Border Grid.Row="1" Grid.Column="2" Width="70" Height="50" CornerRadius="10" Background="White" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,50,0" Opacity="0.75"/>
             <TextBox Grid.Row="1" Grid.Column="2" Width="60" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0, 0,50,0"
+                    Text="{Binding Minutes}"
                     Background="Transparent" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                     FontFamily="Bahnschrift SemiBold" BorderThickness="0"
-                    PreviewTextInput="NumberValidationTextBox"/>
+                    PreviewTextInput="NumberValidationTextBox"/> 
 
-            <Button Content="Submit" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Width="70" Height="50" Background="White" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,65" Opacity="0.75"
+            <Button Content="Submit" Command="{Binding SubmitCommand}" Style="{StaticResource GeneralButton}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"  VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,35"
                     FontFamily="Bahnschrift SemiBold" FontSize="20"/>
 
 

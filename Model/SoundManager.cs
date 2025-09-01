@@ -29,8 +29,9 @@ namespace StudyTimer.Model
         private async Task PlaySoundAsync()
         {
             _isPlaying = true;
+            // await Task.Run(() => Player.PlaySync()); maybe?
             Player.Play();
-            _isPlaying = false;     // Once the sound is done playing
+            _isPlaying = false;     // Once the sound is done playing (or it switches to it automatically?)
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using StudyTimer.ViewModel;
+using System.Text.RegularExpressions;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -10,9 +11,12 @@ namespace StudyTimer.View
     /// </summary>
     public partial class SettingsView : Page
     {
-        public SettingsView()
+        private SettingsViewModel Model;
+        public SettingsView(SettingsViewModel model)
         {
             InitializeComponent();
+            Model = model;
+            DataContext = Model;
         }
 
         // So the textbox accepts numbers only. @See https://stackoverflow.com/questions/1268552/how-do-i-get-a-textbox-to-only-accept-numeric-input-in-wpf

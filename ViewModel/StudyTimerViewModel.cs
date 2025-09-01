@@ -11,7 +11,7 @@ namespace StudyTimer.ViewModel
 {
     public class StudyTimerViewModel : ViewModelBase
     {
-        public Session Session { get; set; }        // Needs to bew public because it's used for binding
+        private readonly TimerSettingsManager _timerSettingsManager;
         public TimerHandler TimerHandler { get; }       // public {get;} for binding purposes
         public SoundManager SoundManager {get;}
         public SessionManager SessionManager { get; }
@@ -22,18 +22,14 @@ namespace StudyTimer.ViewModel
         public RelayCommand StopCommand => new RelayCommand(execute => Stop(), canExecute => { return true; });
         #endregion
 
-        private string _pasueResumeButtonContent = "Pause";
-        public string PasueResumeButtonContent
+        private string _pauseResumeButtonContent = "Pause";
+        public string PauseResumeButtonContent
         {
-            get { return _pasueResumeButtonContent; }
-            set
+            get
             {
-                if (_pasueResumeButtonContent != value)
-                {
-                    _pasueResumeButtonContent = value;
-                    OnPropertyChanged();
-                }
+                return !TimerHandler.IsPaused ? "Pause" : "Resume";     // gets a value based on the bool
             }
+
         }
 
         private string _DescriptionContent = "";
@@ -58,12 +54,15 @@ namespace StudyTimer.ViewModel
             }
         }
 
-        public StudyTimerViewModel(SoundManager soundManager, SessionManager sessionManager)
+        public StudyTimerViewModel(SoundManager soundManager, SessionManager sessionManager, TimerSettingsManager timerSettingsManager)
         {
+            _timerSettingsManager = timerSettingsManager;
             SessionManager = sessionManager;
             SoundManager = soundManager;
             TimerHandler = new TimerHandler(soundManager);
             TimerHandler.Timer.Tick += Timer_Tick;
+
+            _timerSettingsManager.TimerSettingsChanged += OnTimerSettingsChanged;
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -82,6 +81,7 @@ namespace StudyTimer.ViewModel
         public void PauseResume()
         {
             TimerHandler.PauseResume();
+            OnPropertyChanged(nameof(PauseResumeButtonContent));
         }
         public void Stop()
         {
@@ -89,14 +89,19 @@ namespace StudyTimer.ViewModel
             OnPropertyChanged(nameof(CurrentTime));
             TimerHandler.SetDurationTime();
 
-            Session = new Session(SessionManager.Sessions.Count+1, TimerHandler.CreationTime, DescriptionContent, TimerHandler.DurationTimeFormatted());     // need to get rid of the static counter
-            SessionManager.Sessions.Add(Session);
+            var session = new Session(SessionManager.Sessions.Count+1, TimerHandler.CreationTime, DescriptionContent, TimerHandler.DurationTimeFormatted());     // need to get rid of the static counter
+            SessionManager.Sessions.Add(session);
         }
 
         // Sound manager methods
         public void PlayNotificationSound()
         {
             SoundManager.PlayNotification();
+        }
+
+        public void OnTimerSettingsChanged()
+        {
+            TimerHandler.SetTime(_timerSettingsManager.Hours, _timerSettingsManager.Minutes);       // Assigns the values to the timer (both UI and logic)
         }
 
     }

@@ -17,6 +17,7 @@ namespace StudyTimer.Model
         public  DispatcherTimer Timer { get; set; }
         public int Hours { get; private set; } = 0;
         public int Minutes { get; private set; } = 1;      // 30 minutes is the default value of the timer
+        public bool HasStarted { get; set; } = false;
         public bool IsPaused { get; set; } = false;
 
         // Constructor for the handler
@@ -62,12 +63,16 @@ namespace StudyTimer.Model
 
         public void Start()     //Starts the countdown timer
         {
+            HasStarted = true;
             Timer.Start();
         }
 
         public void PauseResume()
         {
-            IsPaused = !IsPaused;       // a quick toggle
+            if (HasStarted)
+            {
+                IsPaused = !IsPaused;       // a quick toggle
+            }
         }
 
         public void Stop()

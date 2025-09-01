@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:StudyTimer.View"
+      xmlns:local="clr-namespace:StudyTimer.View" xmlns:viewmodel="clr-namespace:StudyTimer.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:StudyTimerViewModel}"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="925"
       Title="StudyTimerView">
@@ -30,9 +30,9 @@
            HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
         <WrapPanel x:Name="RowOfButtons" Grid.Row="2" Height="50" HorizontalAlignment="Center" VerticalAlignment="Top">
-            <Button x:Name="btPlay" Content="Play" Height="35" Width="45" Margin="15, 0, 15, 0" Command="{Binding StartCommand}"/>
-            <Button x:Name="btPauseResume" Content="{Binding PasueResumeButtonContent}" Height="35" Width="45" Command="{Binding PauseResumeCommand}"/>
-            <Button x:Name="btStop" Content="Stop" Height="35" Width="45" Margin="15,0,15,0" Command="{Binding StopCommand}"/>
+            <Button x:Name="btPlay" Content="Play" Style="{StaticResource GeneralButton}" Margin="15, 0, 15, 0" Command="{Binding StartCommand}"/>
+            <Button x:Name="btPauseResume" Content="{Binding PauseResumeButtonContent}" Style="{StaticResource GeneralButton}" Command="{Binding PauseResumeCommand}"/>
+            <Button x:Name="btStop" Content="Stop" Style="{StaticResource GeneralButton}" Margin="15,0,15,0" Command="{Binding StopCommand}"/>
         </WrapPanel>
 
     </Grid>
