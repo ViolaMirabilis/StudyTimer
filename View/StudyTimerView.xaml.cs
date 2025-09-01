@@ -24,10 +24,15 @@ namespace StudyTimer.View
     public partial class StudyTimerView : Page
     {
         private StudyTimerViewModel _model;
+        private readonly SettingsView _settingsView;
         private SessionManager _sessionManager;
-        public StudyTimerView(StudyTimerViewModel model, SessionManager sessionManager)
+        private MainWindow _mainWindow;     // for testing
+
+        public StudyTimerView(StudyTimerViewModel model, SessionManager sessionManager, SettingsView settingsView, MainWindow mainWindow)
         {
             InitializeComponent();
+            _mainWindow = mainWindow;       // for testing
+            _settingsView = settingsView;
             _sessionManager = sessionManager;
             _model = model;
             
@@ -35,6 +40,12 @@ namespace StudyTimer.View
             //StudyTimerViewModel vm = new StudyTimerViewModel();     // Creating an instance of the ViewModel and assigning a new DataContext for this View
             DataContext = _model;
             //this.vm = vm;
+        }
+
+        // for testing
+        private void btChangeTimerSettings_Click(object sender, RoutedEventArgs e)
+        {
+            _mainWindow.MainWindowDisplay.Navigate(_settingsView);
         }
     }
 }

@@ -40,9 +40,10 @@ namespace StudyTimer
 
             // initialising all the pages once at the start of the program
             #region Views
-            _studyTimerView = new StudyTimerView(studyTimerViewModel, sessionManager);
-            _sessionsView = new SessionsView(sessionManager);
             _settingsView = new SettingsView(settingsViewModel);
+            _studyTimerView = new StudyTimerView(studyTimerViewModel, sessionManager, _settingsView, this);     // delete the settingsView from here
+            _sessionsView = new SessionsView(sessionManager);
+            
             #endregion
 
             MainWindowDisplay.Navigate(_studyTimerView);      // The program starts with the StudyTimerView 

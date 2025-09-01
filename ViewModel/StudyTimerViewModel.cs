@@ -54,6 +54,39 @@ namespace StudyTimer.ViewModel
             }
         }
 
+        private string _hours = "00";
+        public string Hours
+        {
+            get { return _hours; }
+            set
+            {
+                _hours = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _minutes = "00";
+        public string Minutes
+        {
+            get { return _minutes; }
+            set
+            {
+                _minutes = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _seconds = "00";
+        public string Seconds
+        {
+            get { return _seconds; }
+            set
+            {
+                _seconds = value;
+                OnPropertyChanged();
+            }
+        }
+
         public StudyTimerViewModel(SoundManager soundManager, SessionManager sessionManager, TimerSettingsManager timerSettingsManager)
         {
             _timerSettingsManager = timerSettingsManager;
