@@ -124,6 +124,7 @@ namespace StudyTimer.ViewModel
 
             var session = new Session(SessionManager.Sessions.Count+1, TimerHandler.CreationTime, DescriptionContent, TimerHandler.DurationTimeFormatted());     // need to get rid of the static counter
             SessionManager.Sessions.Add(session);
+            SessionManager.WriteSessionsToJson(session);
         }
 
         // Sound manager methods

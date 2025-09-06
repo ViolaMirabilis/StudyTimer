@@ -5,7 +5,7 @@ namespace StudyTimer.Model
 {
     public class SoundManager : ISoundManager
     {
-        private const string _notificationsPath = @"C:\Users\zajac\Desktop\C# Projects\StudyTimer\Sounds\Notifications\SessionFinishedBell.wav";
+        private const string _notificationsPath = @"C:\Users\zajac\Downloads\SessionFinishedBell.wav";
         public SoundPlayer Player { get; }
         private bool _isPlaying = false;
 

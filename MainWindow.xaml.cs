@@ -31,6 +31,7 @@ namespace StudyTimer
             SessionManager sessionManager = new SessionManager();
             TimerSettingsManager timerSettingsManager = new TimerSettingsManager();
             SoundManager soundManager = new SoundManager();
+            sessionManager.ReadSessionsFromJson();      // runs once at initialisation, gets all info from JSON
             #endregion
 
             #region ViewModels
